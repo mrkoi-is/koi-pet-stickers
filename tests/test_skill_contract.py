@@ -29,9 +29,57 @@ LICENSE = (SKILL_DIR / "LICENSE").read_text(encoding="utf-8")
 COMMERCIAL_LICENSE = (SKILL_DIR / "COMMERCIAL-LICENSE.md").read_text(
     encoding="utf-8"
 )
+README = (SKILL_DIR / "README.md").read_text(encoding="utf-8")
+PIPI_EXAMPLE = (SKILL_DIR / "examples" / "pipi" / "README.md").read_text(
+    encoding="utf-8"
+)
 
 
 class SkillContractTest(unittest.TestCase):
+    def test_public_readme_and_pipi_example_contract(self) -> None:
+        for required in (
+            "# Mr.Koi · 宠物 IP 表情工坊",
+            "https://github.com/mrkoi-is/koi-pet-stickers.git",
+            "$koi-pet-stickers",
+            "examples/pipi/README.md",
+            "六种风格",
+            "[LICENSE](LICENSE)",
+            "[COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md)",
+        ):
+            self.assertIn(required, README)
+
+        for required in (
+            "# 皮皮：六风格完整示例",
+            "assets/input-pipi.jpg",
+            "q-cute-handdrawn",
+            "Q萌手绘贴纸",
+            "极简扁平 Emoji",
+            "粗线漫画大字",
+            "蜡笔手帐涂鸦",
+            "稚拙墨线水彩",
+            "粗墨怪萌水彩",
+            "正好 16 张非空 RGBA PNG",
+        ):
+            self.assertIn(required, PIPI_EXAMPLE)
+
+        example_assets = {
+            path.name
+            for path in (SKILL_DIR / "examples" / "pipi" / "assets").iterdir()
+            if path.is_file()
+        }
+        self.assertEqual(
+            example_assets,
+            {
+                "input-pipi.jpg",
+                "q-cute-handdrawn.png",
+                "flat-emoji.png",
+                "bold-comic.png",
+                "crayon-journal.png",
+                "naive-ink-watercolor.png",
+                "bold-ink-caricature.png",
+            },
+        )
+
     def test_author_and_commercial_license_contract(self) -> None:
         self.assertEqual(SKILL_DIR.name, "koi-pet-stickers")
         for required in (
