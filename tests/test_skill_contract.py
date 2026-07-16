@@ -42,11 +42,26 @@ class SkillContractTest(unittest.TestCase):
             "https://github.com/mrkoi-is/koi-pet-stickers.git",
             "$koi-pet-stickers",
             "examples/pipi/README.md",
+            "指定风格：六种完整口令",
             "六种风格",
             "[LICENSE](LICENSE)",
             "[COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md)",
         ):
             self.assertIn(required, README)
+
+        for style_name in (
+            "Q萌手绘贴纸",
+            "极简扁平 Emoji",
+            "粗线漫画大字",
+            "蜡笔手帐涂鸦",
+            "稚拙墨线水彩",
+            "粗墨怪萌水彩",
+        ):
+            self.assertIn(
+                f"采用“{style_name}”风格生成表情包。",
+                README,
+            )
+        self.assertEqual(README.count("使用 $koi-pet-stickers"), 7)
 
         for required in (
             "# 皮皮：六风格完整示例",
