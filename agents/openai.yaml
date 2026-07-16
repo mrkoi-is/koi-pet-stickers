@@ -1,0 +1,8 @@
+interface:
+  display_name: "Mr.Koi · 宠物 IP 表情工坊"
+  short_description: "Mr.Koi原创｜一张照片，六种风格，直出16张透明宠物表情"
+  brand_color: "#159E98"
+  default_prompt: "使用 $koi-pet-stickers，根据我上传的一张宠物照片和名字提取身份锚点；默认采用“Q萌手绘贴纸”，也可指定极简扁平、粗线漫画、蜡笔手帐、稚拙墨线水彩或粗墨怪萌水彩。保持情绪语义正确，让所选风格自行决定动作、景别和是否显示文字，直接生成纯白背景的小红书REDSkill 4×4宠物IP表情包大图，并裁切输出16张透明PNG表情。"
+
+policy:
+  allow_implicit_invocation: true
